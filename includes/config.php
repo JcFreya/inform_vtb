@@ -14,7 +14,7 @@ if (!LIVE) {
 
 	define('EMAIL', 'keith.mcintire@chp.edu');
 
-	define('BASE_URL', 'http://107.180.75.96/inform-vtb/');
+	define('BASE_URL', 'http://vtb.informnetwork.org');
 
 	define('MYSQL', getcwd() . '/mysqli_connect.php');
 
