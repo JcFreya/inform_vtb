@@ -1,0 +1,47 @@
+<?php
+
+ob_start();
+
+session_start();
+
+if (!isset($page_title)) {
+	$page_title = 'Welcome!';
+}
+
+?>
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title><?php echo $page_title; ?></title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="includes/styles.css">
+	<script type="text/javascript" src="bower_components/jquery/dist/jquery.min.js"></script>
+	<script type="text/javascript" src="includes/scripts.js"></script>
+</head>
+<body>
+
+<nav class="navbar navbar-default">
+	<div class="container">
+		<div class="navbar-header">
+			<a class="navbar-brand" href="index.php">INFORM Virtual Tissue Bank</a>
+		</div>
+		<ul class="nav navbar-nav navbar-right">
+<?php
+	if (isset($_SESSION['user_id'])) {
+		echo '<li><a href="#">Hello, ' . $_SESSION['first_name'] . '</a></li>';
+		if ($_SESSION['investigator_id'] == 0) {
+			echo '<li><a href="create_sample.php">Create Sample</a></li>';
+		}
+		echo '<li><a href="view_samples.php">View Samples</a></li>';
+		echo '<li><a href="change_password.php">Change Password</a></li>
+		<li><a href="logout.php">Logout</a></li>';
+	} else { // Not logged in.
+		echo '<li><a href="register.php">Register</a></li>
+		<li><a href="login.php">Login</a></li>';
+	}
+?>
+		</ul>
+	</div>
+</nav>

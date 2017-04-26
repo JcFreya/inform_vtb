@@ -1,0 +1,19 @@
+body {
+    text-align: center;
+}
+
+.error {
+    color: red;
+}
+
+.table td {
+    text-align: left;
+}
+
+.col-md-6 {
+	text-align: left;	
+}
+
+.col-md-4 {
+	text-align: right;	
+}
