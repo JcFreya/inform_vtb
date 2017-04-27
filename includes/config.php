@@ -1,12 +1,12 @@
 <?php
 
-define('LIVE', TRUE);
+define('LIVE', FALSE);
 
 if (!LIVE) {
 
 	define('EMAIL', 'dongukcho@gmail.com');
 
-	define('BASE_URL', 'http://localhost:8888/inform-vtb/');
+	define('BASE_URL', 'http://localhost:8888/inform_vtb/');
 
 	define('MYSQL', getcwd() . '/mysqli_connect.php');
 
