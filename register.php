@@ -42,20 +42,21 @@ if (isset($_POST['submitted'])) {
 	}
 
 	$t = mysqli_real_escape_string($dbc, $trimmed['title']);
-        $i = mysqli_real_escape_string($dbc, $trimmed['institution']);
-        $w = mysqli_real_escape_string($dbc, $trimmed['web_address']);
-        $a1 = mysqli_real_escape_string($dbc, $trimmed['address1']);
-        $a2 = mysqli_real_escape_string($dbc, $trimmed['address2']);
-        $pc = mysqli_real_escape_string($dbc, $trimmed['postal_code']);
-        $c = mysqli_real_escape_string($dbc, $trimmed['country']);
+    $i = mysqli_real_escape_string($dbc, $trimmed['institution']);
+    $w = mysqli_real_escape_string($dbc, $trimmed['web_address']);
+    $a1 = mysqli_real_escape_string($dbc, $trimmed['address1']);
+    $a2 = mysqli_real_escape_string($dbc, $trimmed['address2']);
+    $a3 = mysqli_real_escape_string($dbc, $trimmed['address3']);
+    $pc = mysqli_real_escape_string($dbc, $trimmed['postal_code']);
+    $c = mysqli_real_escape_string($dbc, $trimmed['country']);
         
-        if (!$t OR !$i OR !$w OR !$a1 OR !$a2 OR !$pc OR !$c) {
+        if (!$t OR !$i OR !$w OR !$a1 OR !$a2 OR !$a3 OR !$pc OR !$c) {
             echo '<p class="error">Please fill in every blank.</p>';
         }
         
         $ii = mysqli_real_escape_string($dbc, $trimmed['investigator_id']);
 	
-	if ($fn && $ln && $e && $p && $t && $i && $w && $a1 && $a2 && $pc && $c) {
+	if ($fn && $ln && $e && $p && $t && $i && $w && $a1 && $a2 && $a3 && $pc && $c) {
 		$q = "SELECT user_id FROM users WHERE email='$e'";
 		$r = mysqli_query($dbc, $q) or trigger_error("Query: $q\n<br />MySQL Error: " . mysqli_error($dbc));
 		if (mysqli_num_rows($r) == 0) {
@@ -63,8 +64,8 @@ if (isset($_POST['submitted'])) {
 			$a = md5(uniqid(rand(), true));
 
 			$q = "INSERT INTO users
-(first_name, last_name, email, pass, title, institution, web_address, address1, address2, postal_code, country, investigator_id, active) VALUES
-('$fn', '$ln', '$e', SHA1('$p'), '$t', '$i', '$w', '$a1', '$a2', '$pc', '$c', '$ii', '$a')";
+(first_name, last_name, email, pass, title, institution, web_address, address1, address2, address3, postal_code, country, investigator_id, active) VALUES
+('$fn', '$ln', '$e', SHA1('$p'), '$t', '$i', '$w', '$a1', '$a2', '$a3', '$pc', '$c', '$ii', '$a')";
 			$r = mysqli_query($dbc, $q) or trigger_error("Query: $q\n<br />MySQL Error: " . mysqli_error($dbc));
 
 			if (mysqli_affected_rows($dbc) == 1) {
@@ -76,6 +77,7 @@ if (isset($_POST['submitted'])) {
                                 $body .= 'Web Address: ' . $w . "\r\n";
                                 $body .= 'Address 1: ' . $a1 . "\r\n";
                                 $body .= 'Address 2: ' . $a2 . "\r\n";
+                                $body .= 'Address 3: ' . $a3 . "\r\n";
                                 $body .= 'Postal Code: ' . $pc . "\r\n";
                                 $body .= 'Country: ' . $c . "\r\n";
                                 $body .=  "\r\n";
@@ -149,7 +151,8 @@ if (isset($_POST['submitted'])) {
 	        <p>Institution: <input type="text" name="institution" value="<?php if (isset($trimmed['institution'])) echo $trimmed['institution']; ?>"  /></p>
 	        <p>Web Address: <input type="url" name="web_address" value="<?php if (isset($trimmed['web_address'])) echo $trimmed['web_address']; ?>" /></p>
 	        <p>Address 1: <input type="text" name="address1" value="<?php if (isset($trimmed['address1'])) echo $trimmed['address1']; ?>" /></p>
-	        <p>Address 2: <input type="text" name="address2" value="<?php if (isset($trimmed['address2'])) echo $trimmed['address2']; ?>" /></p>
+	        <p>Address 2 (City): <input type="text" name="address2" value="<?php if (isset($trimmed['address2'])) echo $trimmed['address2']; ?>" /></p>
+	        <p>Address 3 (State/Province): <input type="text" name="address3" value="<?php if (isset($trimmed['address3'])) echo $trimmed['address3']; ?>" /></p>
 	        <p>Postal Code: <input type="text" name="postal_code" value="<?php if (isset($trimmed['postal_code'])) echo $trimmed['postal_code']; ?>" /></p>
 	        <p>Country: 
 	            <?php include('includes/country_list.html') ?>

@@ -17,3 +17,7 @@ body {
 .col-md-4 {
 	text-align: right;	
 }
+
+#greeting {
+	font-weight: bold;
+}

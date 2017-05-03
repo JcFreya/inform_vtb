@@ -26,7 +26,7 @@ include('includes/header.html');
     <tbody>
 <?php
 require_once(MYSQL);
-$q = "SELECT first_name, last_name, title, institution, web_address, address1, address2, postal_code, country FROM users WHERE investigator_id=0 AND active=''";
+$q = "SELECT first_name, last_name, title, institution, web_address, address1, address2, address3, postal_code, country FROM users WHERE investigator_id=0 AND active=''";
 
 $r = mysqli_query($dbc, $q) or trigger_error("Query: $q\n<br />MySQL Error: " . mysqli_error($dbc));
 
@@ -35,7 +35,7 @@ while ($row = mysqli_fetch_array($r, MYSQLI_ASSOC)) {
     <td>' . $row['first_name'] . ' ' . $row['last_name'] . '</td>
     <td>' . $row['title']. '</td>
     <td>' . $row['institution']. '</td>
-    <td>' . $row['address1'] . ' ' . $row['address2'] . ' ' . $row['postal_code'] . '</td>
+    <td>' . $row['address1'] . ' ' . $row['address2'] . ' ' . $row['address3'] . ' ' . $row['postal_code'] . '</td>
     <td>' . $row['country']. '</td>    
     <td><a href="' . $row['web_address']. '" target="_blank">Visit</a></td></tr>';
     
