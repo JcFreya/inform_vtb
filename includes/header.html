@@ -30,7 +30,7 @@ if (!isset($page_title)) {
 		<ul class="nav navbar-nav navbar-right">
 <?php
 	if (isset($_SESSION['user_id'])) {
-		echo '<li id="greeting"><a href="/inform_vtb">Hello, ' . $_SESSION['first_name'] . '</a></li>';
+		echo '<li id="greeting"><a href="/">Hello, ' . $_SESSION['first_name'] . '</a></li>';
 		if ($_SESSION['investigator_id'] == 0) {
 			echo '<li><a href="create_sample.php">Create Sample</a></li>';
 		}
