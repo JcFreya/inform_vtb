@@ -50,11 +50,11 @@ if (isset($_POST['submitted'])) {
     $pc = mysqli_real_escape_string($dbc, $trimmed['postal_code']);
     $c = mysqli_real_escape_string($dbc, $trimmed['country']);
         
-        if (!$t OR !$i OR !$w OR !$a1 OR !$a2 OR !$a3 OR !$pc OR !$c) {
-            echo '<p class="error">Please fill in every blank.</p>';
-        }
-        
-        $ii = mysqli_real_escape_string($dbc, $trimmed['investigator_id']);
+    if (!$t OR !$i OR !$w OR !$a1 OR !$a2 OR !$a3 OR !$pc OR !$c) {
+        echo '<p class="error">Please fill in every blank.</p>';
+    }
+    
+    $ii = mysqli_real_escape_string($dbc, $trimmed['investigator_id']);
 	
 	if ($fn && $ln && $e && $p && $t && $i && $w && $a1 && $a2 && $a3 && $pc && $c) {
 		$q = "SELECT user_id FROM users WHERE email='$e'";
@@ -69,19 +69,21 @@ if (isset($_POST['submitted'])) {
 			$r = mysqli_query($dbc, $q) or trigger_error("Query: $q\n<br />MySQL Error: " . mysqli_error($dbc));
 
 			if (mysqli_affected_rows($dbc) == 1) {
+
+				echo '<p>Pending Registration!</p>';
                             
-                                $body = 'First Name: ' . $fn . "\r\n";
-                                $body .= 'Last Name: ' . $ln . "\r\n";
-                                $body .= 'Title: ' . $t . "\r\n";
-                                $body .= 'Institution: ' . $i . "\r\n";
-                                $body .= 'Web Address: ' . $w . "\r\n";
-                                $body .= 'Address 1: ' . $a1 . "\r\n";
-                                $body .= 'Address 2: ' . $a2 . "\r\n";
-                                $body .= 'Address 3: ' . $a3 . "\r\n";
-                                $body .= 'Postal Code: ' . $pc . "\r\n";
-                                $body .= 'Country: ' . $c . "\r\n";
-                                $body .=  "\r\n";
-                                $body .= "If you want to approve this request, please click on the link below:\r\n";
+                $body = 'First Name: ' . $fn . "\r\n";
+                $body .= 'Last Name: ' . $ln . "\r\n";
+                $body .= 'Title: ' . $t . "\r\n";
+                $body .= 'Institution: ' . $i . "\r\n";
+                $body .= 'Web Address: ' . $w . "\r\n";
+                $body .= 'Address 1: ' . $a1 . "\r\n";
+                $body .= 'Address 2: ' . $a2 . "\r\n";
+                $body .= 'Address 3: ' . $a3 . "\r\n";
+                $body .= 'Postal Code: ' . $pc . "\r\n";
+                $body .= 'Country: ' . $c . "\r\n";
+                $body .=  "\r\n";
+                $body .= "If you want to approve this request, please click on the link below:\r\n";
 				$body .= BASE_URL . 'activate.php?x=' . urlencode($e) . "&y=$a";
 
 				require('vendor/autoload.php');
