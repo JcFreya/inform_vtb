@@ -86,38 +86,16 @@ if (isset($_POST['submitted'])) {
                 $body .= "If you want to approve this request, please click on the link below:\r\n";
 				$body .= BASE_URL . 'activate.php?x=' . urlencode($e) . "&y=$a";
 
-				require('vendor/autoload.php');
+				$result = mail(EMAIL, 'INFORM VTB Registration Request', wordwrap($body), 'From: ' + $e)
 
-				// Create the Transport
-				$transport = Swift_SmtpTransport::newInstance('smtp.mailgun.org', 587)
-				  ->setUsername('postmaster@sandboxd9979805d66d44cfb3ed977a0935cab7.mailgun.org')
-				  ->setPassword('22ac6581ce67826e266ed579088f330a')
-				  ;
-
-				// Create the Mailer using your created Transport
-				$mailer = Swift_Mailer::newInstance($transport);
-
-				$adminName = 'Keith Mcintire';
-				$requesterName = $fn . ' ' . $ln;
-
-				// Create a message
-				$message = Swift_Message::newInstance('INFORM VTB Registration Request')
-				  ->setFrom(array($e => $requesterName))
-				  ->setTo(array(EMAIL => 'Keith Mcintire'))
-				  ->setBody($body)
-				  ;
-
-				// Send the message
-				$result = $mailer->send($message);
-
-				if ($result) {
+				if (!$result) {
+					echo '<p class="error">The request has not been processed properly. Please contact the system administrator.</p>';
+				} else {
 					echo '<p>INFORM Coordinator will review your registration request.</p>';
 					echo '<p>Once reviewed, your account will be activated and notified via your email address with which you registered.</p>';
 					echo '<p>If your account is not activated within two business days, please contact INFORM Coordinator, Keith Mcintire at keith.mcintire@chp.edu or +1-412-692-5099.</p>';
 
-					echo '<a class="btn btn-primary" href="index.php">Go Home</a>';	
-				} else {
-					echo '<p class="error">The request has not been processed properly. Please contact the system administrator.</p>';
+					echo '<a class="btn btn-primary" href="index.php">Go Home</a>';
 				}
 
 				include('includes/footer.html');
