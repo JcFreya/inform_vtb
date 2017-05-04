@@ -126,7 +126,7 @@ if (isset($_POST['submitted'])) {
 		<p>Email: <input type="email" name="email" value="<?php if (isset($trimmed['email'])) echo $trimmed['email']; ?>" /></p>
 		<p>Password: <input type="password" name="pass1" /></p>
 		<p>Confirm Password: <input type="password" name="pass2" /></p>
-	        <p>Title: <input type="text" name="title" value="<?php if (isset($trimmed['title'])) echo $trimmed['title']; ?>" " /></p>
+	        <p>Title: <input type="text" name="title" value="<?php if (isset($trimmed['title'])) echo $trimmed['title']; ?>" /></p>
 	        <p>Institution: <input type="text" name="institution" value="<?php if (isset($trimmed['institution'])) echo $trimmed['institution']; ?>"  /></p>
 	        <p>Web Address: <input type="url" name="web_address" value="<?php if (isset($trimmed['web_address'])) echo $trimmed['web_address']; ?>" /></p>
 	        <p>Address 1: <input type="text" name="address1" value="<?php if (isset($trimmed['address1'])) echo $trimmed['address1']; ?>" /></p>
