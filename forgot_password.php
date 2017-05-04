@@ -38,6 +38,7 @@ if (isset($_POST['submitted'])) {
 
 			$body = "Your password to log into " . BASE_URL . "login.php has been temporarily changed to '$p'. Please log in using this password and this email address. Then you may change your password to something more familiar.";
 
+<<<<<<< HEAD
 			$result = mail($_POST['email'], 'INFORM VTB Registration Request', $body, EMAIL);
 
 			if (!$result) {
@@ -46,12 +47,27 @@ if (isset($_POST['submitted'])) {
 				
 			} else {
 
+=======
+			$headers = "From: <" . EMAIL . ">\r\n";
+
+			$result = mail($_POST['email'], 'INFORM VTB Password Reset', $body, $headers);
+
+			if (!$result) {
+
+				echo '<p class="error">Password Reset email could not be sent.</p>';
+
+			} else {
+				
+>>>>>>> old-state
 				echo '<p>Your password has been changed.</p>';
 				echo '<p>You will receive the new, temporary password at the email address with which you registered.</p>';
 				echo '<p>Once you have logged in with this password, you may change it by clicking on the "Change Password" link.</p>';
 
 				mysqli_close($dbc);	
+<<<<<<< HEAD
 				
+=======
+>>>>>>> old-state
 			}
 
 			include('includes/footer.html');
