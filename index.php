@@ -52,7 +52,7 @@ include('includes/footer.html');
 ?>
 <script>
 (function ($) {
-    $(".banner-info").css("padding-top","100px"); 
+    $(".banner-info").css("padding-top","190px"); 
     $(".banner-info").css("visibility","visible"); 
     $("#banner").css("min-height","650px"); 
     $(".bg-color").css("min-height","650px"); 
