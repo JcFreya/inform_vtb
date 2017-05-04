@@ -38,12 +38,14 @@ if (isset($_POST['submitted'])) {
 
 			$body = "Your password to log into " . BASE_URL . "login.php has been temporarily changed to '$p'. Please log in using this password and this email address. Then you may change your password to something more familiar.";
 
-			$result = mail($_POST['email'], 'INFORM VTB Password Reset', $body, EMAIL);
+			$headers = "From: <" . EMAIL . ">\r\n";
+
+			$result = mail($_POST['email'], 'INFORM VTB Password Reset', $body, $headers);
 
 			if (!$result) {
 
 				echo '<p class="error">Password Reset email could not be sent.</p>';
-				
+
 			} else {
 				
 				echo '<p>Your password has been changed.</p>';

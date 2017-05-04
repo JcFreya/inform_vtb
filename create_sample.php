@@ -86,8 +86,6 @@ user_id) VALUES (
 
 	if (mysqli_affected_rows($dbc) == 1) {
 
-		mysqli_free_result($r);
-
 		mysqli_close($dbc);
 
 		$url = BASE_URL . 'view_samples.php';
@@ -167,12 +165,14 @@ user_id) VALUES (
 				<p>Sample Date: <input name="sample_date" type="date"></p>
 
 				<p>Demographic Data: <br />
-					Age: <input name="age" type="number" min="1" placeholder="Age" /><br />
-					Sex: <select name="sex">
+					Age: <input name="age" type="number" min="1" placeholder="Age" style="margin-top:5px"/>
+                    <br/>
+					Sex: <select name="sex" style="margin-top:5px; margin-bottom:5px">
 						<option value="0">Female</option>
 						<option value="1">Male</option>
-					</select><br />
-					Ethnic Background: <select name="ethnic">
+					</select>
+                    <br/>
+					Ethnic Background: <select name="ethnic" style="margin-top:5px">
 					    <option value="Mixed Race">Mixed Race</option>
 					    <option value="Arctic (Siberian, Eskimo)">Arctic (Siberian, Eskimo)</option>
 					    <option value="Caucasian (European)">Caucasian (European)</option>

@@ -12,9 +12,9 @@ if (!LIVE) {
 
 } else {
 
-	// define('EMAIL', 'keith.mcintire@chp.edu');
+	define('EMAIL', 'keith.mcintire@chp.edu');
 
-	define('EMAIL', 'dongukcho@gmail.com');
+	define('ADMIN', 'dongukcho@gmail.com');
 
 	define('BASE_URL', 'http://vtb.informnetwork.org/');
 
@@ -34,7 +34,7 @@ function my_error_handler($e_number, $e_message, $e_file, $e_line, $e_vars) {
 	if (!LIVE) { // Development Mode
 		echo '<div id="error">' . $message . '</div><br />';
 	} else { // Production Mode
-		mail(EMAIL, 'Site Error!', $message, 'FROM: admin@inform-vtb.org');
+		mail(ADMIN, 'Site Error!', $message, 'FROM: admin@informnetwork.org');
 
 		echo '<div id="error">' . $message . '</div><br />';
 
