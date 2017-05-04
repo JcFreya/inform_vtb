@@ -38,35 +38,20 @@ if (isset($_POST['submitted'])) {
 
 			$body = "Your password to log into " . BASE_URL . "login.php has been temporarily changed to '$p'. Please log in using this password and this email address. Then you may change your password to something more familiar.";
 
-			require('vendor/autoload.php');
+			$result = mail($_POST['email'], 'INFORM VTB Registration Request', $body, EMAIL);
 
-			// Create the Transport
-			$transport = Swift_SmtpTransport::newInstance('smtp.mailgun.org', 587)
-			  ->setUsername('postmaster@sandboxd9979805d66d44cfb3ed977a0935cab7.mailgun.org')
-			  ->setPassword('22ac6581ce67826e266ed579088f330a')
-			  ;
+			if (!$result) {
 
-			// Create the Mailer using your created Transport
-			$mailer = Swift_Mailer::newInstance($transport);
+				echo '<p class="error">Password Reset email could not be sent.</p>';
+				
+			} else {
 
-			// Create a message
-			$message = Swift_Message::newInstance('INFORM VTB Password Reset')
-			  ->setFrom(array(EMAIL => 'Keith Mcintire'))
-			  ->setTo(array($_POST['email']))
-			  ->setBody($body)
-			  ;
-
-			// Send the message
-			$result = $mailer->send($message);
-
-			if ($result) {
 				echo '<p>Your password has been changed.</p>';
 				echo '<p>You will receive the new, temporary password at the email address with which you registered.</p>';
 				echo '<p>Once you have logged in with this password, you may change it by clicking on the "Change Password" link.</p>';
 
 				mysqli_close($dbc);	
-			} else {
-				echo '<p class="error">Password Reset email could not be sent.</p>';
+				
 			}
 
 			include('includes/footer.html');

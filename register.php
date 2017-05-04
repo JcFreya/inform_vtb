@@ -83,9 +83,7 @@ if (isset($_POST['submitted'])) {
                 $body .= "If you want to approve this request, please click on the link below:\r\n";
 				$body .= BASE_URL . 'activate.php?x=' . urlencode($e) . "&y=$a";
 
-				$body = wordwrap($body, 70);
-
-				$result = mail(EMAIL, 'INFORM VTB Registration Request', $body, 'From: ' + $e);
+				$result = mail(EMAIL, 'INFORM VTB Registration Request', $body, $e);
 
 				if (!$result) {
 					echo '<p class="error">The request has not been processed properly. Please contact the system administrator.</p>';
