@@ -69,9 +69,6 @@ if (isset($_POST['submitted'])) {
 			$r = mysqli_query($dbc, $q) or trigger_error("Query: $q\n<br />MySQL Error: " . mysqli_error($dbc));
 
 			if (mysqli_affected_rows($dbc) == 1) {
-
-				echo '<p>Pending Registration!</p>';
-                            
                 $body = 'First Name: ' . $fn . "\r\n";
                 $body .= 'Last Name: ' . $ln . "\r\n";
                 $body .= 'Title: ' . $t . "\r\n";
@@ -86,7 +83,9 @@ if (isset($_POST['submitted'])) {
                 $body .= "If you want to approve this request, please click on the link below:\r\n";
 				$body .= BASE_URL . 'activate.php?x=' . urlencode($e) . "&y=$a";
 
-				$result = mail(EMAIL, 'INFORM VTB Registration Request', wordwrap($body), 'From: ' + $e)
+				$body = wordwrap($body, 70);
+
+				$result = mail(EMAIL, 'INFORM VTB Registration Request', $body, 'From: ' + $e);
 
 				if (!$result) {
 					echo '<p class="error">The request has not been processed properly. Please contact the system administrator.</p>';
