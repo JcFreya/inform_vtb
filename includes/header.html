@@ -14,34 +14,74 @@ if (!isset($page_title)) {
 <html>
 <head>
 	<title><?php echo $page_title; ?></title>
-	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1">    
+	<link rel="stylesheet" type="text/css" href="includes/css/font-awesome.min.css">
 	<link rel="stylesheet" type="text/css" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="includes/style.css">
 	<link rel="stylesheet" type="text/css" href="includes/styles.css">
 	<script type="text/javascript" src="bower_components/jquery/dist/jquery.min.js"></script>
 	<script type="text/javascript" src="includes/scripts.js"></script>
 </head>
 <body>
 
-<nav class="navbar navbar-default">
-	<div class="container">
-		<div class="navbar-header">
-			<a class="navbar-brand" href="index.php">INFORM Virtual Tissue Bank</a>
-		</div>
-		<ul class="nav navbar-nav navbar-right">
-<?php
-	if (isset($_SESSION['user_id'])) {
-		echo '<li id="greeting"><a href="/">Hello, ' . $_SESSION['first_name'] . '</a></li>';
-		if ($_SESSION['investigator_id'] == 0) {
-			echo '<li><a href="create_sample.php">Create Sample</a></li>';
-		}
-		echo '<li><a href="view_samples.php">View Samples</a></li>';
-		echo '<li><a href="change_password.php">Change Password</a></li>
-		<li><a href="logout.php">Logout</a></li>';
-	} else { // Not logged in.
-		echo '<li><a href="register.php">Register</a></li>
-		<li><a href="login.php">Login</a></li>';
-	}
-?>
-		</ul>
-	</div>
-</nav>
+<section id="banner" class="banner">
+    <div class="bg-color">
+        <nav class="navbar navbar-default navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="index.php">INFORM Virtual Tissue Bank</a>
+                </div>
+                <ul class="nav navbar-nav navbar-right">
+        <?php
+            if (isset($_SESSION['user_id'])) {
+                echo '<li id="greeting"><a href="/">Hello, ' . $_SESSION['first_name'] . '</a></li>';
+                if ($_SESSION['investigator_id'] == 0) {
+                    echo '<li><a href="create_sample.php">Create Sample</a></li>';
+                }
+                echo '<li><a href="view_samples.php">View Samples</a></li>';
+                echo '<li><a href="change_password.php">Change Password</a></li>
+                <li><a href="logout.php">Logout</a></li>';
+            } else { // Not logged in.
+                echo '<li><a href="register.php">Register</a></li>
+                <li><a href="login.php">Login</a></li>';
+            }
+        ?>
+                </ul>
+            </div>
+        </nav>
+        <div class="container">
+            <div class="row">
+                <div class="banner-info">
+                    <div class="banner-text text-center">
+                        <?php
+                            if (!isset($_SESSION['user_id'])) { //not logged in
+                                echo '<h4 class="white">Welcome to</h4>
+                                        <br/>';
+
+                            }
+                        ?>                        
+                        <h2 class="white">Virtual Tissue Bank</h2>
+                        <br/>
+                        <h4 class="white">
+                            By
+                                <strong>INFORM (International Network for Fatty Acid Oxidation Research and Management)</strong>
+                            
+                        </h4>
+                        <br/>
+                        <?php
+                            if (!isset($_SESSION['user_id'])) { //not logged in
+                                echo '<p>This database collates tissue and fluid samples available from INFORM investigators for the study of fatty acid oxidation disorders.</p>
+                                <p>Registration is open to scientists interested in obtaining samples for laboratory experiments. Limited access is available to the public.</p>';
+                            }
+                        ?>                        
+                    </div>
+                    <div class="overlay-detail text-center">
+                       <a href="#service"><i class="fa fa-angle-down"></i></a>
+                     </div>		
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+    <br />
+    <section id="service" ></section>
