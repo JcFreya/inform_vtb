@@ -6,10 +6,10 @@ include('includes/header.html');
 
 <div class="container">
 
-<div class="jumbotron">
+<!--<div class="jumbotron">
   <h2>INFORM Virtual Tissue Bank</h2>
   <p>Welcome to the virtual tissue bank of INFORM. This database collates tissue and fluid samples available from INFORM investigators for the study of fatty acid oxidation disorders. Registration is open to scientists interested in obtaining samples for laboratory experiments. Limited access is available to the public.</p>
-</div>
+</div>-->
 
 <h3>Investigators List</h3>
   <table class="table table-striped">
