@@ -1,9 +1,9 @@
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "-05:00"; -- EST
 
-DROP DATABASE IF EXISTS `inform`;
-CREATE DATABASE `inform`;
-USE `inform`;
+DROP DATABASE IF EXISTS `inform_vtb`;
+CREATE DATABASE `inform_vtb`;
+USE `inform_vtb`;
 
 CREATE TABLE `users` (
   `user_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,

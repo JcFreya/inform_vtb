@@ -1,6 +1,6 @@
 <?php
 
-define('LIVE', FALSE);
+define('LIVE', TRUE);
 
 if (!LIVE) {
 
@@ -12,7 +12,9 @@ if (!LIVE) {
 
 } else {
 
-	define('EMAIL', 'keith.mcintire@chp.edu');
+	// define('EMAIL', 'keith.mcintire@chp.edu');
+
+	define('EMAIL', 'dongukcho@gmail.com');
 
 	define('BASE_URL', 'http://vtb.informnetwork.org/');
 
