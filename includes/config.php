@@ -1,6 +1,6 @@
 <?php
 
-define('LIVE', TRUE);
+define('LIVE', FALSE);
 
 if (!LIVE) {
 

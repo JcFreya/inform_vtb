@@ -89,7 +89,7 @@ $r = mysqli_query($dbc, $q) or trigger_error("Query: $q\n<br />MySQL Error: " . 
 
 while ($row = mysqli_fetch_array($r, MYSQLI_ASSOC)) {
     echo '<tr>
-    <td>' . $row['sample_id'] . '</td>
+    <td><a href="show_sample.php?sample_id=' . $row['sample_id'] . '">' . $row['sample_id'] . '</a></td>
     <td>' . $row['diagnosis'] . '</td>
     <td>' . $row['symptoms']. '</td>
     <td>' . $row['genotype_a1']. '</td>
