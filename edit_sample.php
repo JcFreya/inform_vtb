@@ -31,7 +31,9 @@ $genotype_a2 = mysqli_real_escape_string($dbc, $_POST['genotype_a2']);
 $genotype_a2_code = mysqli_real_escape_string($dbc, $_POST['genotype_a2_code']);
 $phenotype = mysqli_real_escape_string($dbc, $_POST['phenotype']);
 $sample_date = mysqli_real_escape_string($dbc, $_POST['sample_date']);
-$age = mysqli_real_escape_string($dbc, $_POST['age']);
+$age_days = mysqli_real_escape_string($dbc, $_POST['age_days']);
+$age_months = mysqli_real_escape_string($dbc, $_POST['age_months']);
+$age_years = mysqli_real_escape_string($dbc, $_POST['age_years']);
 $sex = mysqli_real_escape_string($dbc, $_POST['sex']);
 $ethnic = mysqli_real_escape_string($dbc, $_POST['ethnic']);
 $sample_type = mysqli_real_escape_string($dbc, $_POST['sample_type']);
@@ -55,7 +57,9 @@ genotype_a2='$genotype_a2',
 genotype_a2_code='$genotype_a2_code',
 phenotype='$phenotype',
 sample_date='$sample_date',
-age='$age',
+age_days='$age_days',
+age_months='$age_months',
+age_years='$age_years',
 sex='$sex',
 ethnic='$ethnic',
 sample_type='$sample_type',
@@ -104,7 +108,9 @@ genotype_a2,
 genotype_a2_code,
 phenotype,
 sample_date,
-age,
+age_days,
+age_months,
+age_years,
 sex,
 ethnic,
 sample_type,
@@ -343,7 +349,11 @@ if (mysqli_num_rows($r) == 1) {
 				<p>Sample Date: <input name="sample_date" type="date" value="' . $row['sample_date'] . '"></p>
 
 				<p>Demographic Data: <br />
-					Age: <input name="age" type="number" min="1" placeholder="Age" value="' . $row['age'] . '" /><br />
+					Age: <input name="age_days" type="number" min="1" style="margin-top:5px; width:5em;" value="' . $row['age_days'] . '" />
+					<input name="age_months" type="number" min="1" style="margin-top:5px; width:5em;" value="' . $row['age_months'] . '" />
+					<input name="age_years" type="number" min="1" style="margin-top:5px; width:5em;" value="' . $row['age_years'] . '" />
+                    <br/>
+
 					Sex: <select name="sex">
 						<option value="0"';
 

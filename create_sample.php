@@ -2,7 +2,7 @@
 
 require_once('includes/config.php');
 
-$page_title = 'Register';
+$page_title = 'Create Sample';
 
 include('includes/header.html');
 
@@ -11,14 +11,16 @@ if (isset($_POST['submitted'])) {
 	require_once(MYSQL);
 
 $diagnosis = mysqli_real_escape_string($dbc, $_POST['diagnosis']);
-$symptoms = mysqli_real_escape_string($dbc, $_POST['symptoms']);
+$symptoms = mysqli_real_escape_string($dbc, implode(", ", $_POST['symptoms']));
 $genotype_a1 = mysqli_real_escape_string($dbc, $_POST['genotype_a1']);
 $genotype_a1_code = mysqli_real_escape_string($dbc, $_POST['genotype_a1_code']);
 $genotype_a2 = mysqli_real_escape_string($dbc, $_POST['genotype_a2']);
 $genotype_a2_code = mysqli_real_escape_string($dbc, $_POST['genotype_a2_code']);
 $phenotype = mysqli_real_escape_string($dbc, $_POST['phenotype']);
 $sample_date = mysqli_real_escape_string($dbc, $_POST['sample_date']);
-$age = mysqli_real_escape_string($dbc, $_POST['age']);
+$age_days = mysqli_real_escape_string($dbc, $_POST['age_days']);
+$age_months = mysqli_real_escape_string($dbc, $_POST['age_months']);
+$age_years = mysqli_real_escape_string($dbc, $_POST['age_years']);
 $sex = mysqli_real_escape_string($dbc, $_POST['sex']);
 $ethnic = mysqli_real_escape_string($dbc, $_POST['ethnic']);
 $sample_type = mysqli_real_escape_string($dbc, $_POST['sample_type']);
@@ -43,7 +45,9 @@ genotype_a2,
 genotype_a2_code,
 phenotype,
 sample_date,
-age,
+age_days,
+age_months,
+age_years,
 sex,
 ethnic,
 sample_type,
@@ -66,7 +70,9 @@ user_id) VALUES (
 '$genotype_a2_code',
 '$phenotype',
 '$sample_date',
-'$age',
+'$age_days',
+'$age_months',
+'$age_years',
 '$sex',
 '$ethnic',
 '$sample_type',
@@ -131,8 +137,8 @@ user_id) VALUES (
 					</select>
 				</p>
 
-				<p>Symptoms/Findings: 
-				  	<select name="symptoms">
+				<p>Symptoms/Findings: <br />
+				  	<select name="symptoms[]" multiple size=8>
 					  <option value="Hypoglycemia">Hypoglycemia</option>
 					  <option value="Rhabdomyolysis">Rhabdomyolysis</option>
 					  <option value="Cardiomyopathy">Cardiomyopathy</option>
@@ -160,12 +166,14 @@ user_id) VALUES (
 					<input name="genotype_a2_code" type="text" placeholder="Code" />
 				</p>
 
-				<p>Phenotype: <input name="phenotype" type="text" size="30" placeholder="Hypoglycemia Rhadomyolysis"></p>
+				<p>Phenotype: <input name="phenotype" type="text" size="30"></p>
 
 				<p>Sample Date: <input name="sample_date" type="date"></p>
 
 				<p>Demographic Data: <br />
-					Age: <input name="age" type="number" min="1" placeholder="Age" style="margin-top:5px"/>
+					Age: <input name="age_days" type="number" min="1" style="margin-top:5px; width:5em;" placeholder="Day(s)" />
+					<input name="age_months" type="number" min="1" style="margin-top:5px; width:5em;" placeholder="Month(s)" />
+					<input name="age_years" type="number" min="1" style="margin-top:5px; width:5em;" placeholder="Year(s)" />
                     <br/>
 					Sex: <select name="sex" style="margin-top:5px; margin-bottom:5px">
 						<option value="0">Female</option>

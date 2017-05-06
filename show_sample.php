@@ -30,7 +30,9 @@ genotype_a2,
 genotype_a2_code,
 phenotype,
 sample_date,
-age,
+age_days,
+age_months,
+age_years,
 sex,
 ethnic,
 sample_type,
@@ -43,7 +45,8 @@ fed_or_fasted,
 plasma_or_serum_or_dried,
 frozen_vs_fixed,
 prior_testing,
-consent
+consent,
+user_id
 FROM samples
 WHERE sample_id=$sample_id";
 
@@ -80,7 +83,7 @@ if (mysqli_num_rows($r) == 1) {
 		  	<p>Genotype - Allele 2 Code: ' . $row['genotype_a2_code'] . '</p>
 		  	<p>Phenotype: ' . $row['phenotype'] . '</p>
 		  	<p>Sample Date: ' . $row['sample_date'] . '</p>
-		  	<p>Demographic Data - Age: ' . $row['age'] . '</p>
+		  	<p>Demographic Data - Age: ' . $row['age_years'] . ' year(s) ' . $row['age_months'] . ' month(s) ' . $row['age_days'] . ' day(s)</p>
 		  	<p>Demographic Data - Sex: ' . $sex . '</p>
 		  	<p>Demographic Data - Ethnic Background: ' . $row['ethnic'] . '</p>
 		  	<p>Sample Type: ' . $row['sample_type'] . '</p>
@@ -99,7 +102,7 @@ if (mysqli_num_rows($r) == 1) {
 		  	<h4>Investigator</h4>
 		  	<hr />';
 				require_once(MYSQL);
-				$q = "SELECT first_name, last_name, title, institution, web_address, address1, address2, postal_code, country, email FROM users WHERE user_id={$_SESSION['user_id']}";
+				$q = "SELECT first_name, last_name, title, institution, web_address, address1, address2, postal_code, country, email FROM users WHERE user_id={$row['user_id']}";
 
 				$r = mysqli_query($dbc, $q) or trigger_error("Query: $q\n<br />MySQL Error: " . mysqli_error($dbc));
 

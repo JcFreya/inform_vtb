@@ -77,7 +77,7 @@ if (isset($_POST['submitted'])) {
         LIMIT $start, $display";
 
 } else {
-    $q = "SELECT sample_id, diagnosis, symptoms, genotype_a1, genotype_a1_code, genotype_a2, genotype_a2_code, phenotype, sample_date, age, sex, ethnic, sample_type, users.user_id, first_name, last_name, email
+    $q = "SELECT sample_id, diagnosis, symptoms, genotype_a1, genotype_a1_code, genotype_a2, genotype_a2_code, phenotype, sample_date, age_days, age_months, age_years, sex, ethnic, sample_type, users.user_id, first_name, last_name, email
         FROM samples
         LEFT JOIN users ON samples.user_id = users.user_id
         ORDER BY samples.created_at DESC, samples.updated_at DESC
