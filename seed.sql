@@ -29,8 +29,8 @@ CREATE INDEX `login`
 ON `users` (`email`, `pass`);
 
 INSERT INTO `users` (`first_name`, `last_name`, `email`, `pass`, `title`, `institution`, `web_address`, `address1`, `address2`, `address3`, `postal_code`, `country`, `investigator_id`, `active`) VALUES
-('Jerry', 'Vockley', 'vockleyg@upmc.edu', '7c4a8d09ca3762af61e59520943dc26494f8941b', 'MD, PhD', 'Children\'s Hospital of Pittsburgh', 'http://www.chp.edu/find-a-doctor/service-providers/gerard-vockley-50926', 'One Children\'s Hospital Drive, 4401 Penn Ave.', 'PITTSBURGH', 'PA', '15209', 'United States of America', 0, ''),
-('Jean', 'Bastin', 'jean.bastin@inserm.fr', '7c4a8d09ca3762af61e59520943dc26494f8941b', 'PhD', 'INSERM U1124, Université Paris Descartes', 'http://www.biomedicale.parisdescartes.fr/cicb-paris/spip.php?rubrique63&lang=fr', '45 Rue Des Saints-Pères', 'PARIS', '', '75006', 'France', 0, '');
+('Jerry', 'Vockley', 'vockleyg@upmc.edu', SHA1('Inform@2017'), 'MD, PhD', 'Children\'s Hospital of Pittsburgh', 'http://www.chp.edu/find-a-doctor/service-providers/gerard-vockley-50926', 'One Children\'s Hospital Drive, 4401 Penn Ave.', 'PITTSBURGH', 'PA', '15209', 'United States of America', 0, ''),
+('Jean', 'Bastin', 'jean.bastin@inserm.fr', SHA1('Inform@2017'), 'PhD', 'INSERM U1124, Université Paris Descartes', 'http://www.biomedicale.parisdescartes.fr/cicb-paris/spip.php?rubrique63&lang=fr', '45 Rue Des Saints-Pères', 'PARIS', '', '75006', 'France', 0, '');
 
 
 CREATE TABLE `samples` (

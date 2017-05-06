@@ -24,7 +24,7 @@ if (isset($_POST['submitted'])) {
 
 $sample_id = mysqli_real_escape_string($dbc, $_POST['sample_id']);
 $diagnosis = mysqli_real_escape_string($dbc, $_POST['diagnosis']);
-$symptoms = mysqli_real_escape_string($dbc, $_POST['symptoms']);
+$symptoms = mysqli_real_escape_string($dbc, implode(", ", $_POST['symptoms']));
 $genotype_a1 = mysqli_real_escape_string($dbc, $_POST['genotype_a1']);
 $genotype_a1_code = mysqli_real_escape_string($dbc, $_POST['genotype_a1_code']);
 $genotype_a2 = mysqli_real_escape_string($dbc, $_POST['genotype_a2']);
@@ -241,70 +241,74 @@ if (mysqli_num_rows($r) == 1) {
 
 					  echo '>Electron flavoprotein dehydrogenase deficiency (ETFDH)</option>
 					</select>
-				</p>
+				</p>';
 
-				<p>Symptoms/Findings: 
-				  	<select name="symptoms">
-					  <option value="Hypoglycemia"';
+				
+				$symptoms_array = explode(", ", $row['symptoms']);
 
-					  if (!strcmp($row['symptoms'], 'Hypoglycemia')) {
-					  	echo ' selected="selected"';
+				echo '<p>Symptoms/Findings: <br />
+				  	<select name="symptoms[]" multiple size=8>
+					  <option value="Hypoglycemia" ';
+
+			  	// if option value is included in the symptoms_array, echo "selected".
+					  if (in_array("Hypoglycemia", $symptoms_array)) {
+					  	echo "selected";
 					  }
 
-					  echo '>Hypoglycemia</option>
+				echo '>Hypoglycemia</option>
 					  <option value="Rhabdomyolysis"';
 
-					  if (!strcmp($row['symptoms'], 'Rhabdomyolysis')) {
-					  	echo ' selected="selected"';
+					  if (in_array("Rhabdomyolysis", $symptoms_array)) {
+					  	echo "selected";
 					  }
 
-					  echo '>Rhabdomyolysis</option>
-					  <option value="Cardiomyopathy"';
+			    echo '>Rhabdomyolysis</option>
+					  <option value="Cardiomyopathy" ';
 
-					  if (!strcmp($row['symptoms'], 'Cardiomyopathy')) {
-					  	echo ' selected="selected"';
+					  if (in_array("Cardiomyopathy", $symptoms_array)) {
+					  	echo "selected";
 					  }
 
-					  echo '>Cardiomyopathy</option>
+				echo '>Cardiomyopathy</option>
 					  <option value="Cardiac arrhythmia"';
 
-					  if (!strcmp($row['symptoms'], 'Cardiac arrhythmia')) {
-					  	echo ' selected="selected"';
+					  if (in_array("Cardiac arrhythmia", $symptoms_array)) {
+					  	echo "selected";
 					  }
 
-					  echo '>Cardiac arrhythmia</option>
+			    echo '>Cardiac arrhythmia</option>
 					  <option value="Skeletal Myopathy"';
 
-					  if (!strcmp($row['symptoms'], 'Skeletal Myopathy')) {
-					  	echo ' selected="selected"';
+					  if (in_array("Skeletal Myopathy", $symptoms_array)) {
+					  	echo "selected";
 					  }
 
-					  echo '>Skeletal Myopathy</option>
+			    echo '>Skeletal Myopathy</option>
 					  <option value="Hyperammonemia"';
 
-					  if (!strcmp($row['symptoms'], 'Hyperammonemia')) {
-					  	echo ' selected="selected"';
+					  if (in_array("Hyperammonemia", $symptoms_array)) {
+					  	echo "selected";
 					  }
 
-					  echo '>Hyperammonemia</option>
+			    echo '>Hyperammonemia</option>
 					  <option value="Peripheral neuropathy"';
 
-					  if (!strcmp($row['symptoms'], 'Peripheral neuropathy')) {
-					  	echo ' selected="selected"';
+					  if (in_array("Peripheral neuropathy", $symptoms_array)) {
+					  	echo "selected";
 					  }
 
-					  echo '>Peripheral neuropathy</option>
+			    echo '>Peripheral neuropathy</option>
 					  <option value="Retinopathy"';
 
-					  if (!strcmp($row['symptoms'], 'Retinopathy')) {
-					  	echo ' selected="selected"';
+					  if (in_array("Retinopathy", $symptoms_array)) {
+					  	echo "selected";
 					  }
 
-					  echo '>Retinopathy</option>
+			    echo '>Retinopathy</option>
 					</select>
-				</p>
+				</p>';
 
-				<p>Genotype - Allele 1:
+				echo '<p>Genotype - Allele 1:
 					<select name="genotype_a1">
 						<option value="Protein"';
 
@@ -344,7 +348,7 @@ if (mysqli_num_rows($r) == 1) {
 					<input name="genotype_a2_code" type="text" placeholder="Code" value="' . $row['genotype_a2_code'] . '"/>
 				</p>
 
-				<p>Phenotype: <input name="phenotype" type="text" size="30" placeholder="Hypoglycemia, Rhadomyolysis" value="' . $row['phenotype'] . '"></p>
+				<p>Phenotype: <input name="phenotype" type="text" size="30" value="' . $row['phenotype'] . '"></p>
 
 				<p>Sample Date: <input name="sample_date" type="date" value="' . $row['sample_date'] . '"></p>
 
