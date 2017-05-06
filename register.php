@@ -8,8 +8,8 @@ include('includes/header.html');
 
 if (isset($_POST['submitted'])) {
 	
-	require_once(MYSQL);
-
+	require(MYSQL);	
+	
 	$trimmed = array_map('trim', $_POST);
 
 	$fn = $ln = $e = $p = FALSE;
@@ -141,7 +141,9 @@ if (isset($_POST['submitted'])) {
 			<select id="investigator_id" name="investigator_id">
 				<option value="0"></option>
 	<?php
-	require(MYSQL);
+	
+	require(MYSQL);	
+	
 	$q = "SELECT user_id, first_name, last_name FROM users WHERE investigator_id = 0";
 	$r = mysqli_query($dbc, $q) or trigger_error("Query: $q\n<br />MySQL Error: " . mysqli_error($dbc));
 	while ($row = mysqli_fetch_array($r, MYSQLI_ASSOC)) {
