@@ -69,10 +69,10 @@ if (isset($_POST['submitted'])) {
 
     $search = mysqli_real_escape_string($dbc, $_POST['search']);
 
-    $q = "SELECT sample_id, diagnosis, symptoms, genotype_a1, genotype_a1_code, genotype_a2, genotype_a2_code, phenotype, sample_date, age, sex, ethnic, sample_type, users.user_id, first_name, last_name, email
+    $q = "SELECT sample_id, diagnosis, symptoms, genotype_a1, genotype_a1_code, genotype_a2, genotype_a2_code, phenotype, sample_date, age_days, age_months, age_years, sex, ethnic, sample_type, users.user_id, first_name, last_name, email
         FROM samples
         LEFT JOIN users ON samples.user_id = users.user_id
-        WHERE MATCH (diagnosis, symptoms, genotype_a1, genotype_a1_code, genotype_a2, genotype_a2_code, phenotype, type, passage_num, age_at_sampling, prior_results, sick_or_well, fed_or_fasted, plasma_or_serum_or_dried, frozen_vs_fixed, prior_testing) AGAINST('$search')
+        WHERE MATCH (diagnosis, symptoms, genotype_a1, genotype_a1_code, genotype_a2, genotype_a2_code, phenotype, type, passage_num, age_at_sampling, prior_results, sick_or_well, fed_or_fasted, plasma_or_serum_or_dried, frozen_vs_fixed, prior_testing) AGAINST('$search') OR MATCH (first_name, last_name) AGAINST('$search')
         ORDER BY samples.created_at DESC, samples.updated_at DESC
         LIMIT $start, $display";
 

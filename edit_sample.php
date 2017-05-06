@@ -353,9 +353,9 @@ if (mysqli_num_rows($r) == 1) {
 				<p>Sample Date: <input name="sample_date" type="date" value="' . $row['sample_date'] . '"></p>
 
 				<p>Demographic Data: <br />
-					Age: <input name="age_days" type="number" min="1" style="margin-top:5px; width:5em;" value="' . $row['age_days'] . '" />
-					<input name="age_months" type="number" min="1" style="margin-top:5px; width:5em;" value="' . $row['age_months'] . '" />
-					<input name="age_years" type="number" min="1" style="margin-top:5px; width:5em;" value="' . $row['age_years'] . '" />
+					Age: <input name="age_days" type="number" min="1" style="margin-top:5px; width:5em;" value="' . $row['age_days'] . '" /> days
+					<input name="age_months" type="number" min="1" style="margin-top:5px; width:5em;" value="' . $row['age_months'] . '" /> months
+					<input name="age_years" type="number" min="1" style="margin-top:5px; width:5em;" value="' . $row['age_years'] . '" /> years
                     <br/>
 
 					Sex: <select name="sex">

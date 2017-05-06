@@ -25,6 +25,9 @@ CREATE TABLE `users` (
   `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00' ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+ALTER TABLE users
+ADD FULLTEXT(first_name, last_name);
+
 CREATE INDEX `login`
 ON `users` (`email`, `pass`);
 
