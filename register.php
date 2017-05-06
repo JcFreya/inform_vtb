@@ -7,7 +7,8 @@ $page_title = 'Register';
 include('includes/header.html');
 
 if (isset($_POST['submitted'])) {
-	require(MYSQL);
+	
+	require_once(MYSQL);
 
 	$trimmed = array_map('trim', $_POST);
 
