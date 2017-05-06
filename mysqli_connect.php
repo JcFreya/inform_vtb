@@ -6,7 +6,7 @@ if (!LIVE) {
 	DEFINE('DB_HOST', 'localhost');
 	DEFINE('DB_NAME', 'inform_vtb');
 } else {
-	DEFINE('DB_USER', 'SB_Lnd3xS1VUKhFh');
+	DEFINE('DB_USER', 'inform_admin');
 	DEFINE('DB_PASSWORD', 'Inform@2017');
 	DEFINE('DB_HOST', 'localhost');
 	DEFINE('DB_NAME', 'inform_vtb');
