@@ -36,7 +36,7 @@ function my_error_handler($e_number, $e_message, $e_file, $e_line, $e_vars) {
 	} else { // Production Mode
 		mail(ADMIN, 'Site Error!', $message, 'FROM: admin@informnetwork.org');
 
-		echo '<div id="error">' . $message . '</div><br />';
+		// echo '<div id="error">' . $message . '</div><br />';
 
 		if ($e_number != E_NOTICE) {
 			echo '<div id="error">A system error occurred. We apologize for the inconvenience.</div><br />';
