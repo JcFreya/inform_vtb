@@ -214,7 +214,7 @@ user_id) VALUES (
 				<p id="fed_or_fasted">Fed or fasted: <input name="fed_or_fasted" type="text" /></p>
 				<p id="plasma_or_serum_or_dried">Plasma, serum or dried blood spot: <input name="plasma_or_serum_or_dried" type="text" /></p>
 				<p id="frozen_vs_fixed">Frozen vs fixed: <input name="frozen_vs_fixed" type="text" /></p>
-				<p id="prior_results">Prior biochemical results: <input name="prior_results" type="text" /></p>
+				<p id="prior_results">Prior biochemical results: <br /><textarea rows="5" cols="55" name="prior_results" /></textarea></p>
 				<p id="prior_testing">Prior pathology or enzyme testing: <input name="prior_testing" type="text" /></p>
 		  	
 		  </div>

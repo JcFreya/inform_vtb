@@ -513,6 +513,10 @@ if (mysqli_num_rows($r) == 1) {
 				<p id="plasma_or_serum_or_dried">Plasma, serum or dried blood spot: <input name="plasma_or_serum_or_dried" type="text" value="' . $row['plasma_or_serum_or_dried'] . '" /></p>
 				<p id="frozen_vs_fixed">Frozen vs fixed: <input name="frozen_vs_fixed" type="text" value="' . $row['frozen_vs_fixed'] . '"/></p>
 				<p id="prior_results">Prior biochemical results: <input name="prior_results" type="text" value="' . $row['prior_results'] . '"/></p>
+
+				<p id="prior_results">Prior biochemical results: <br /><textarea rows="5" cols="55" name="prior_results" />' . $row['prior_results'] . '</textarea></p>
+
+
 				<p id="prior_testing">Prior pathology or enzyme testing: <input name="prior_testing" type="text" value="' . $row['prior_testing'] . '" /></p>
 		  	
 		  </div>
