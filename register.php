@@ -2,13 +2,13 @@
 
 require_once('includes/config.php');
 
+require_once(MYSQL);
+
 $page_title = 'Register';
 
 include('includes/header.html');
 
 if (isset($_POST['submitted'])) {
-	
-	require(MYSQL);	
 	
 	$trimmed = array_map('trim', $_POST);
 
@@ -112,7 +112,7 @@ if (isset($_POST['submitted'])) {
 		echo '<p class="error">Please try again.';
 	}
 
-	mysqli_close($dbc);
+	// mysqli_close($dbc);
 }
 ?>
 
@@ -141,15 +141,13 @@ if (isset($_POST['submitted'])) {
 			<select id="investigator_id" name="investigator_id">
 				<option value="0"></option>
 	<?php
-	
-	require(MYSQL);	
-	
+		
 	$q = "SELECT user_id, first_name, last_name FROM users WHERE investigator_id = 0";
 	$r = mysqli_query($dbc, $q) or trigger_error("Query: $q\n<br />MySQL Error: " . mysqli_error($dbc));
 	while ($row = mysqli_fetch_array($r, MYSQLI_ASSOC)) {
 		echo '<option value="' . $row['user_id'] . '">' . $row['first_name'] . ' ' . $row['last_name'] . '</option>';
 	}
-	mysqli_close($dbc);
+	// mysqli_close($dbc);
 	?>
 			</select>
 		</p>

@@ -34,7 +34,7 @@ function my_error_handler($e_number, $e_message, $e_file, $e_line, $e_vars) {
 	if (!LIVE) { // Development Mode
 		echo '<div id="error">' . $message . '</div><br />';
 	} else { // Production Mode
-		mail(ADMIN, 'Site Error!', $message, 'FROM: admin@informnetwork.org');
+		mail(ADMIN, 'INFORM VTB Site Error!', $message, 'FROM: admin@informnetwork.org');
 
 		// echo '<div id="error">' . $message . '</div><br />';
 
