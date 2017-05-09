@@ -80,7 +80,7 @@ banner
     transition: all 0.3s;
 }
 .navbar-default {
-    background-color: transparent;
+    background-color: white;
     border: 0px;
 }
 .navbar {
@@ -123,7 +123,7 @@ banner
 }
 .navbar-default .navbar-nav > li > a
 {
-    color: #fff;
+    color: black;
     text-transform: uppercase;
     font-size: 14px;
     font-weight: 300;
@@ -142,7 +142,7 @@ banner
     background-color: rgba(12, 184, 182) !important;
 }
 #banner{
-    background: url('img/b2.jpg') no-repeat fixed;
+    background: url('img/b1.jpg') no-repeat fixed;
     background-size: cover;
     min-height: 0px;
     position: relative;
@@ -161,6 +161,7 @@ banner
 .banner-text{
     color: #fff;
     height:80px;
+    margin-top: 4em;
 }
 .banner-text h1{
     font-family: 'Candal', sans-serif;
