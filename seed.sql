@@ -88,5 +88,5 @@ CREATE TABLE `samples` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 ALTER TABLE samples
-ADD FULLTEXT(diagnosis, symptoms, genotype_a1, genotype_a1_code, genotype_a2, genotype_a2_code, phenotype, type, passage_num, age_at_sampling, prior_results, sick_or_well, fed_or_fasted, plasma_or_serum_or_dried, frozen_vs_fixed, prior_testing);
+ADD FULLTEXT(diagnosis, symptoms, genotype_a1, genotype_a1_code, genotype_a2, genotype_a2_code, phenotype, sample_type, passage_num, age_at_sampling, prior_results, sick_or_well, fed_or_fasted, plasma_or_serum_or_dried, frozen_vs_fixed, prior_testing);
 

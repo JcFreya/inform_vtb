@@ -77,7 +77,7 @@ WHERE sample_id='$sample_id' LIMIT 1";
 
 	$r = mysqli_query($dbc, $q) or trigger_error("Query: $q\n<br />MySQL Error: " . mysqli_error($dbc));
 
-	if (mysqli_affected_rows($dbc) == 1) {
+	if ($r == TRUE AND mysqli_affected_rows($dbc) == 1) {
 
 		mysqli_close($dbc);
 
