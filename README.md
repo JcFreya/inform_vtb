@@ -8,7 +8,6 @@ Registration is open to scientists interested in obtaining samples for laborator
 
 	bower install jquery bootstrap
 
-
-
-	MySQL Setup
+## Development Environment (MAMP on Mac OS X)
+### MySQL Setup
     /Applications/MAMP/Library/bin/mysql -uroot -p < seed.sql
