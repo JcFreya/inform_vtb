@@ -102,5 +102,18 @@ mysqli_close($dbc);
 
 <?php
 include('includes/footer.html');
+<<<<<<< HEAD
 >>>>>>> old-state
 ?>
+=======
+?>
+<script>
+(function ($) {
+    $(".banner-info").css("padding-top","190px"); 
+    $(".banner-info").css("visibility","visible"); 
+    $("#banner").css("min-height","650px"); 
+    $(".bg-color").css("min-height","650px"); 
+    
+})(jQuery);
+</script>
+>>>>>>> old-state

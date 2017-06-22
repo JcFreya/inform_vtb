@@ -28,8 +28,6 @@ if ( isset($_POST['submitted']) ) {
 
 		if (mysqli_affected_rows($dbc) == 1) {
 
-			mysqli_free_result($r);
-
 			mysqli_close($dbc);
 
 			$url = BASE_URL . 'view_samples.php';

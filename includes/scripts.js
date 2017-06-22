@@ -21,6 +21,10 @@
             $(".navbar-fixed-top").removeClass("top-nav-collapse");
         }
     });
+<<<<<<< HEAD
     
+>>>>>>> old-state
+=======
+ 
 >>>>>>> old-state
 })(jQuery);

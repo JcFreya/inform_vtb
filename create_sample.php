@@ -306,106 +306,122 @@ include('includes/footer.html');
 
 require_once('includes/config.php');
 
-$page_title = 'Register';
+$page_title = 'Create Sample';
 
 include('includes/header.html');
 
 if (isset($_POST['submitted'])) {
 
-	require_once(MYSQL);
+	if (!isset($_POST['symptoms'])) {
 
-$diagnosis = mysqli_real_escape_string($dbc, $_POST['diagnosis']);
-$symptoms = mysqli_real_escape_string($dbc, $_POST['symptoms']);
-$genotype_a1 = mysqli_real_escape_string($dbc, $_POST['genotype_a1']);
-$genotype_a1_code = mysqli_real_escape_string($dbc, $_POST['genotype_a1_code']);
-$genotype_a2 = mysqli_real_escape_string($dbc, $_POST['genotype_a2']);
-$genotype_a2_code = mysqli_real_escape_string($dbc, $_POST['genotype_a2_code']);
-$phenotype = mysqli_real_escape_string($dbc, $_POST['phenotype']);
-$sample_date = mysqli_real_escape_string($dbc, $_POST['sample_date']);
-$age = mysqli_real_escape_string($dbc, $_POST['age']);
-$sex = mysqli_real_escape_string($dbc, $_POST['sex']);
-$ethnic = mysqli_real_escape_string($dbc, $_POST['ethnic']);
-$sample_type = mysqli_real_escape_string($dbc, $_POST['sample_type']);
-$type = mysqli_real_escape_string($dbc, $_POST['type']);
-$passage_num = mysqli_real_escape_string($dbc, $_POST['passage_num']);
-$age_at_sampling = mysqli_real_escape_string($dbc, $_POST['age_at_sampling']);
-$prior_results = mysqli_real_escape_string($dbc, $_POST['prior_results']);
-$sick_or_well = mysqli_real_escape_string($dbc, $_POST['sick_or_well']);
-$fed_or_fasted = mysqli_real_escape_string($dbc, $_POST['fed_or_fasted']);
-$plasma_or_serum_or_dried = mysqli_real_escape_string($dbc, $_POST['plasma_or_serum_or_dried']);
-$frozen_vs_fixed = mysqli_real_escape_string($dbc, $_POST['frozen_vs_fixed']);
-$prior_testing = mysqli_real_escape_string($dbc, $_POST['prior_testing']);
-$consent = mysqli_real_escape_string($dbc, $_POST['consent']);
-$user_id = $_SESSION['user_id'];
+		echo '<p class="error">Symptoms/Findings are mandatory!</p>';
 
-	$q = "INSERT INTO samples (
-diagnosis,
-symptoms,
-genotype_a1,
-genotype_a1_code,
-genotype_a2,
-genotype_a2_code,
-phenotype,
-sample_date,
-age,
-sex,
-ethnic,
-sample_type,
-type,
-passage_num,
-age_at_sampling,
-prior_results,
-sick_or_well,
-fed_or_fasted,
-plasma_or_serum_or_dried,
-frozen_vs_fixed,
-prior_testing,
-consent,
-user_id) VALUES (
-'$diagnosis',
-'$symptoms',
-'$genotype_a1',
-'$genotype_a1_code',
-'$genotype_a2',
-'$genotype_a2_code',
-'$phenotype',
-'$sample_date',
-'$age',
-'$sex',
-'$ethnic',
-'$sample_type',
-'$type',
-'$passage_num',
-'$age_at_sampling',
-'$prior_results',
-'$sick_or_well',
-'$fed_or_fasted',
-'$plasma_or_serum_or_dried',
-'$frozen_vs_fixed',
-'$prior_testing',
-'$consent',
-'$user_id'
-)";
-	$r = mysqli_query($dbc, $q) or trigger_error("Query: $q\n<br />MySQL Error: " . mysqli_error($dbc));
+	} else if (!$_POST['sample_type']) {
 
-	if (mysqli_affected_rows($dbc) == 1) {
+		echo '<p class="error">Sample Type is mandatory!</p>';
 
-		mysqli_close($dbc);
+	} else {
 
-		$url = BASE_URL . 'view_samples.php';
+		require_once(MYSQL);
 
-		header("Location: $url");
+	$diagnosis = mysqli_real_escape_string($dbc, $_POST['diagnosis']);
+	$symptoms = mysqli_real_escape_string($dbc, implode(", ", $_POST['symptoms']));
+	$genotype_a1 = mysqli_real_escape_string($dbc, $_POST['genotype_a1']);
+	$genotype_a1_code = mysqli_real_escape_string($dbc, $_POST['genotype_a1_code']);
+	$genotype_a2 = mysqli_real_escape_string($dbc, $_POST['genotype_a2']);
+	$genotype_a2_code = mysqli_real_escape_string($dbc, $_POST['genotype_a2_code']);
+	$phenotype = mysqli_real_escape_string($dbc, $_POST['phenotype']);
+	$sample_date = mysqli_real_escape_string($dbc, $_POST['sample_date']);
+	$age_days = mysqli_real_escape_string($dbc, $_POST['age_days']);
+	$age_months = mysqli_real_escape_string($dbc, $_POST['age_months']);
+	$age_years = mysqli_real_escape_string($dbc, $_POST['age_years']);
+	$sex = mysqli_real_escape_string($dbc, $_POST['sex']);
+	$ethnic = mysqli_real_escape_string($dbc, $_POST['ethnic']);
+	$sample_type = mysqli_real_escape_string($dbc, $_POST['sample_type']);
+	$type = mysqli_real_escape_string($dbc, $_POST['type']);
+	$passage_num = mysqli_real_escape_string($dbc, $_POST['passage_num']);
+	$age_at_sampling = mysqli_real_escape_string($dbc, $_POST['age_at_sampling']);
+	$prior_results = mysqli_real_escape_string($dbc, $_POST['prior_results']);
+	$sick_or_well = mysqli_real_escape_string($dbc, $_POST['sick_or_well']);
+	$fed_or_fasted = mysqli_real_escape_string($dbc, $_POST['fed_or_fasted']);
+	$plasma_or_serum_or_dried = mysqli_real_escape_string($dbc, $_POST['plasma_or_serum_or_dried']);
+	$frozen_vs_fixed = mysqli_real_escape_string($dbc, $_POST['frozen_vs_fixed']);
+	$prior_testing = mysqli_real_escape_string($dbc, $_POST['prior_testing']);
+	$consent = mysqli_real_escape_string($dbc, $_POST['consent']);
+	$user_id = $_SESSION['user_id'];
 
-		exit();
+		$q = "INSERT INTO samples (
+	diagnosis,
+	symptoms,
+	genotype_a1,
+	genotype_a1_code,
+	genotype_a2,
+	genotype_a2_code,
+	phenotype,
+	sample_date,
+	age_days,
+	age_months,
+	age_years,
+	sex,
+	ethnic,
+	sample_type,
+	type,
+	passage_num,
+	age_at_sampling,
+	prior_results,
+	sick_or_well,
+	fed_or_fasted,
+	plasma_or_serum_or_dried,
+	frozen_vs_fixed,
+	prior_testing,
+	consent,
+	user_id) VALUES (
+	'$diagnosis',
+	'$symptoms',
+	'$genotype_a1',
+	'$genotype_a1_code',
+	'$genotype_a2',
+	'$genotype_a2_code',
+	'$phenotype',
+	'$sample_date',
+	'$age_days',
+	'$age_months',
+	'$age_years',
+	'$sex',
+	'$ethnic',
+	'$sample_type',
+	'$type',
+	'$passage_num',
+	'$age_at_sampling',
+	'$prior_results',
+	'$sick_or_well',
+	'$fed_or_fasted',
+	'$plasma_or_serum_or_dried',
+	'$frozen_vs_fixed',
+	'$prior_testing',
+	'$consent',
+	'$user_id'
+	)";
+		$r = mysqli_query($dbc, $q) or trigger_error("Query: $q\n<br />MySQL Error: " . mysqli_error($dbc));
 
-	} else{
-		echo '<p class="error">Internal Error</p>';
+		if (mysqli_affected_rows($dbc) == 1) {
 
-		mysqli_close($dbc);
+			mysqli_close($dbc);
+
+			$url = BASE_URL . 'view_samples.php';
+
+			header("Location: $url");
+
+			exit();
+
+		} else{
+			echo '<p class="error">Internal Error</p>';
+
+			mysqli_close($dbc);
+		}
 	}
-
-	
 }
+
 ?>
 
 <h3>Create Sample</h3>
@@ -435,8 +451,8 @@ user_id) VALUES (
 					</select>
 				</p>
 
-				<p>Symptoms/Findings: 
-				  	<select name="symptoms">
+				<p>Symptoms/Findings: <br />
+				  	<select name="symptoms[]" multiple size=8>
 					  <option value="Hypoglycemia">Hypoglycemia</option>
 					  <option value="Rhabdomyolysis">Rhabdomyolysis</option>
 					  <option value="Cardiomyopathy">Cardiomyopathy</option>
@@ -464,12 +480,14 @@ user_id) VALUES (
 					<input name="genotype_a2_code" type="text" placeholder="Code" />
 				</p>
 
-				<p>Phenotype: <input name="phenotype" type="text" size="30" placeholder="Hypoglycemia Rhadomyolysis"></p>
+				<p>Phenotype: <input name="phenotype" type="text" size="30"></p>
 
 				<p>Sample Date: <input name="sample_date" type="date"></p>
 
 				<p>Demographic Data: <br />
-					Age: <input name="age" type="number" min="1" placeholder="Age" style="margin-top:5px"/>
+					Age: <input name="age_days" type="number" min="1" style="margin-top:5px; width:5em;" placeholder="Day(s)" />
+					<input name="age_months" type="number" min="1" style="margin-top:5px; width:5em;" placeholder="Month(s)" />
+					<input name="age_years" type="number" min="1" style="margin-top:5px; width:5em;" placeholder="Year(s)" />
                     <br/>
 					Sex: <select name="sex" style="margin-top:5px; margin-bottom:5px">
 						<option value="0">Female</option>
@@ -510,7 +528,7 @@ user_id) VALUES (
 				<p id="fed_or_fasted">Fed or fasted: <input name="fed_or_fasted" type="text" /></p>
 				<p id="plasma_or_serum_or_dried">Plasma, serum or dried blood spot: <input name="plasma_or_serum_or_dried" type="text" /></p>
 				<p id="frozen_vs_fixed">Frozen vs fixed: <input name="frozen_vs_fixed" type="text" /></p>
-				<p id="prior_results">Prior biochemical results: <input name="prior_results" type="text" /></p>
+				<p id="prior_results">Prior biochemical results: <br /><textarea rows="5" cols="55" name="prior_results" /></textarea></p>
 				<p id="prior_testing">Prior pathology or enzyme testing: <input name="prior_testing" type="text" /></p>
 		  	
 		  </div>

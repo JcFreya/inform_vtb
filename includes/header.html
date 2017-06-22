@@ -107,9 +107,9 @@ if (!isset($page_title)) {
 	<meta name="viewport" content="width=device-width, initial-scale=1">    
 	<link rel="stylesheet" type="text/css" href="includes/css/font-awesome.min.css">
 	<link rel="stylesheet" type="text/css" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
-	<link rel="stylesheet" type="text/css" href="includes/style.css">
 	<link rel="stylesheet" type="text/css" href="includes/styles.css">
 	<script type="text/javascript" src="bower_components/jquery/dist/jquery.min.js"></script>
+    <script type="text/javascript" src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="includes/scripts.js"></script>
 </head>
 <body>
@@ -119,12 +119,14 @@ if (!isset($page_title)) {
         <nav class="navbar navbar-default navbar-fixed-top">
             <div class="container">
                 <div class="navbar-header">
-                    <a class="navbar-brand" href="index.php">INFORM Virtual Tissue Bank</a>
+                    <a class="navbar-brand" href="index.php">
+                        <img src="includes/img/logo.png" alt="INFORM Virtual Tissue Bank">
+                    </a>
                 </div>
-                <ul class="nav navbar-nav navbar-right">
+                <ul class="menu nav navbar-nav navbar-right">
         <?php
             if (isset($_SESSION['user_id'])) {
-                echo '<li id="greeting"><a href="/">Hello, ' . $_SESSION['first_name'] . '</a></li>';
+                echo '<li id="greeting"><a href="index.php">Hello, ' . $_SESSION['first_name'] . '</a></li>';
                 if ($_SESSION['investigator_id'] == 0) {
                     echo '<li><a href="create_sample.php">Create Sample</a></li>';
                 }
@@ -143,13 +145,7 @@ if (!isset($page_title)) {
             <div class="row">
                 <div class="banner-info">
                     <div class="banner-text text-center">
-                        <?php
-                            if (!isset($_SESSION['user_id'])) { //not logged in
-                                echo '<h4 class="white">Welcome to</h4>
-                                        <br/>';
-
-                            }
-                        ?>                        
+                        <h4 class="white">Welcome to</h4><br/>
                         <h2 class="white">Virtual Tissue Bank</h2>
                         <br/>
                         <h4 class="white">
@@ -158,12 +154,8 @@ if (!isset($page_title)) {
                             
                         </h4>
                         <br/>
-                        <?php
-                            if (!isset($_SESSION['user_id'])) { //not logged in
-                                echo '<p>This database collates tissue and fluid samples available from INFORM investigators for the study of fatty acid oxidation disorders.</p>
-                                <p>Registration is open to scientists interested in obtaining samples for laboratory experiments. Limited access is available to the public.</p>';
-                            }
-                        ?>                        
+                        <p>This database collates tissue and fluid samples available from INFORM investigators for the study of fatty acid oxidation disorders.</p>
+                                <p>Registration is open to scientists interested in obtaining samples for laboratory experiments. Limited access is available to the public.</p> 
                     </div>
                     <div class="overlay-detail text-center">
                        <a href="#service"><i class="fa fa-angle-down"></i></a>

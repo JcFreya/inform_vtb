@@ -27,6 +27,7 @@ echo '<h3>Samples List</h3>';
         <th>Genotype - Allele 2</th>
         <th>Genotype - Allele 2 Code</th>
         <th>Phenotype</th>
+        <th>Sample Type</th>
         <th>Investigator</th>
 <?php
 if (isset($_SESSION['investigator_id']) AND $_SESSION['investigator_id'] == 0) {
@@ -69,15 +70,15 @@ if (isset($_POST['submitted'])) {
 
     $search = mysqli_real_escape_string($dbc, $_POST['search']);
 
-    $q = "SELECT sample_id, diagnosis, symptoms, genotype_a1, genotype_a1_code, genotype_a2, genotype_a2_code, phenotype, sample_date, age, sex, ethnic, sample_type, users.user_id, first_name, last_name, email
+    $q = "SELECT sample_id, diagnosis, symptoms, genotype_a1, genotype_a1_code, genotype_a2, genotype_a2_code, phenotype, sample_date, age_days, age_months, age_years, sex, ethnic, sample_type, users.user_id, first_name, last_name, email
         FROM samples
         LEFT JOIN users ON samples.user_id = users.user_id
-        WHERE MATCH (diagnosis, symptoms, genotype_a1, genotype_a1_code, genotype_a2, genotype_a2_code, phenotype, type, passage_num, age_at_sampling, prior_results, sick_or_well, fed_or_fasted, plasma_or_serum_or_dried, frozen_vs_fixed, prior_testing) AGAINST('$search')
+        WHERE MATCH (diagnosis, symptoms, genotype_a1, genotype_a1_code, genotype_a2, genotype_a2_code, phenotype, sample_type, passage_num, age_at_sampling, prior_results, sick_or_well, fed_or_fasted, plasma_or_serum_or_dried, frozen_vs_fixed, prior_testing) AGAINST('$search') OR MATCH (first_name, last_name) AGAINST('$search')
         ORDER BY samples.created_at DESC, samples.updated_at DESC
         LIMIT $start, $display";
 
 } else {
-    $q = "SELECT sample_id, diagnosis, symptoms, genotype_a1, genotype_a1_code, genotype_a2, genotype_a2_code, phenotype, sample_date, age, sex, ethnic, sample_type, users.user_id, first_name, last_name, email
+    $q = "SELECT sample_id, diagnosis, symptoms, genotype_a1, genotype_a1_code, genotype_a2, genotype_a2_code, phenotype, sample_date, age_days, age_months, age_years, sex, ethnic, sample_type, users.user_id, first_name, last_name, email
         FROM samples
         LEFT JOIN users ON samples.user_id = users.user_id
         ORDER BY samples.created_at DESC, samples.updated_at DESC
@@ -89,7 +90,7 @@ $r = mysqli_query($dbc, $q) or trigger_error("Query: $q\n<br />MySQL Error: " . 
 
 while ($row = mysqli_fetch_array($r, MYSQLI_ASSOC)) {
     echo '<tr>
-    <td>' . $row['sample_id'] . '</td>
+    <td><a href="show_sample.php?sample_id=' . $row['sample_id'] . '">' . $row['sample_id'] . '</a></td>
     <td>' . $row['diagnosis'] . '</td>
     <td>' . $row['symptoms']. '</td>
     <td>' . $row['genotype_a1']. '</td>
@@ -97,6 +98,7 @@ while ($row = mysqli_fetch_array($r, MYSQLI_ASSOC)) {
     <td>' . $row['genotype_a2']. '</td>
     <td>' . $row['genotype_a2_code']. '</td>
     <td>' . $row['phenotype']. '</td>
+    <td>' . $row['sample_type']. '</td>
     <td><a href="mailto:' . $row['email'] .'">' . $row['first_name']. ' ' . $row['last_name'] . '</a>' . '</td>';
     if ($_SESSION['user_id'] == $row['user_id']) {
     	echo '<td><a href="edit_sample.php?sample_id=' . $row['sample_id'] . '" class="btn btn-warning btn-sm">Edit</a></td>
