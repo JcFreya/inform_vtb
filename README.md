@@ -9,9 +9,3 @@ Registration is open to scientists interested in obtaining samples for laborator
 	bower install jquery bootstrap
 	composer require sendgrid/sendgrid
 
-## Development Environment (MAMP on Mac OS X)
-### Document Root
-	/Applications/MAMP/htdocs
-### MySQL Setup
-    /Applications/MAMP/Library/bin/mysql -uroot -p < seed.sql# inform_vtb
-# inform_vtb
