@@ -14,3 +14,4 @@ Registration is open to scientists interested in obtaining samples for laborator
 	/Applications/MAMP/htdocs
 ### MySQL Setup
     /Applications/MAMP/Library/bin/mysql -uroot -p < seed.sql# inform_vtb
+# inform_vtb
