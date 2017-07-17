@@ -4,12 +4,13 @@ This database collates tissue and fluid samples available from INFORM investigat
 
 Registration is open to scientists interested in obtaining samples for laboratory experiments. Limited access is available to the public.
 
-## Install
-
+## Installation
+	
 	bower install jquery bootstrap
+	composer require sendgrid/sendgrid
 
 ## Development Environment (MAMP on Mac OS X)
 ### Document Root
 	/Applications/MAMP/htdocs
 ### MySQL Setup
-    /Applications/MAMP/Library/bin/mysql -uroot -p < seed.sql
+    /Applications/MAMP/Library/bin/mysql -uroot -p < seed.sql# inform_vtb
