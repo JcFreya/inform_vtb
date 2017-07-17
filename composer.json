@@ -1,0 +1,12 @@
+{
+    "name": "fanyuan/inform_vtb",
+    "authors": [
+        {
+            "name": "Freya",
+            "email": "yfan941101@gmail.com"
+        }
+    ],
+    "require": {
+        "sendgrid/sendgrid": "^6.0"
+    }
+}

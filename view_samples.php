@@ -37,6 +37,7 @@ if (isset($_SESSION['investigator_id']) AND $_SESSION['investigator_id'] == 0) {
       </tr>
     </thead>
     <tbody>
+    
 <?php
 require_once(MYSQL);
 

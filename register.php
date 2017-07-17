@@ -1,6 +1,7 @@
 <?php
 
 require_once('includes/config.php');
+// include ('sendmail.php');
 
 require_once(MYSQL);
 
@@ -84,9 +85,11 @@ if (isset($_POST['submitted'])) {
                 $body .= "If you want to approve this request, please click on the link below:\r\n";
 				$body .= BASE_URL . 'activate.php?x=' . urlencode($e) . "&y=$a";
 
-				$result = mail(EMAIL, 'INFORM VTB Registration Request', $body, $e);
+				$result = sendemail($e,'INFORM VTB Registration Request',EMAIL, $body);
+				// echo $e;
+				// echo $result;
 
-				if (!$result) {
+				if ($result==0) {
 					echo '<p class="error">The request has not been processed properly. Please contact the system administrator.</p>';
 				} else {
 					echo '<p>INFORM Coordinator will review your registration request.</p>';

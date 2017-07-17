@@ -1,10 +1,11 @@
 <?php
 
 define('LIVE', FALSE);
+include ('sendmail.php');
 
 if (!LIVE) {
 
-	define('EMAIL', 'dongukcho@gmail.com');
+	define('EMAIL', 'informvtb@gmail.com');
 
 	define('BASE_URL', 'http://localhost:8888/inform_vtb/');
 
@@ -12,11 +13,13 @@ if (!LIVE) {
 
 } else {
 
-	define('EMAIL', 'keith.mcintire@chp.edu');
+	// define('EMAIL', 'keith.mcintire@chp.edu');
+	define('EMAIL', 'informvtb@gmail.com');
 
-	define('ADMIN', 'dongukcho@gmail.com');
+	define('ADMIN', 'informvtb@gmail.com');
 
-	define('BASE_URL', 'http://vtb.informnetwork.org/');
+	// define('BASE_URL', 'http://vtb.informnetwork.org/');
+	define('BASE_URL', 'https://vtb2017.herokuapp.com/');
 
 	define('MYSQL', getcwd() . '/mysqli_connect.php');
 
@@ -34,7 +37,7 @@ function my_error_handler($e_number, $e_message, $e_file, $e_line, $e_vars) {
 	if (!LIVE) { // Development Mode
 		echo '<div id="error">' . $message . '</div><br />';
 	} else { // Production Mode
-		mail(ADMIN, 'INFORM VTB Site Error!', $message, 'FROM: admin@informnetwork.org');
+		sendemail(EMAIL, 'INFORM VTB Site Error!', ADMIN, $message);
 
 		// echo '<div id="error">' . $message . '</div><br />';
 

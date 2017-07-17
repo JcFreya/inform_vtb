@@ -81,6 +81,7 @@ if (isset($_POST['submitted'])) {
 
 	</div>
 </div>
+
 <?php
 include('includes/footer.html');
 ?>
