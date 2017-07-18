@@ -7,5 +7,5 @@ Registration is open to scientists interested in obtaining samples for laborator
 ## Installation
 	
 	bower install jquery bootstrap
-	composer require sendgrid/sendgrid
+	composer install sendgrid/sendgrid
 
