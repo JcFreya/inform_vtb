@@ -9,7 +9,7 @@ if (!LIVE) {
 
 	define('BASE_URL', 'http://localhost:8888/inform_vtb/');
 
-	define('MYSQL', getcwd() . '/mysqli_connect.php');
+	define('MYSQL', getcwd() . '/database/mysqli_connect.php');
 
 } else {
 
@@ -21,7 +21,7 @@ if (!LIVE) {
 	// define('BASE_URL', 'http://vtb.informnetwork.org/');
 	define('BASE_URL', 'https://vtb2017.herokuapp.com/');
 
-	define('MYSQL', getcwd() . '/mysqli_connect.php');
+	define('MYSQL', getcwd() . '/database/mysqli_connect.php');
 
 }
 

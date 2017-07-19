@@ -1,5 +1,5 @@
 <?php
-require_once('includes/config.php');
+require_once('config/config.php');
 $page_title = 'Welcome to INFORM Virtual Tissue Bank';
 include('includes/header.html');
 ?>

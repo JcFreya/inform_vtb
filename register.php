@@ -1,8 +1,6 @@
 <?php
 
-require_once('includes/config.php');
-// include ('sendmail.php');
-
+require_once('config/config.php');
 require_once(MYSQL);
 
 $page_title = 'Register';
