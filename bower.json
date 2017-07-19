@@ -1,0 +1,20 @@
+{
+  "name": "inform_vtb",
+  "homepage": "https://github.com/JcFreya/inform_vtb",
+  "authors": [
+    "Freya <yfan941101@gmail.com>"
+  ],
+  "description": "",
+  "main": "",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "^3.3.7"
+  }
+}

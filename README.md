@@ -9,7 +9,7 @@ Registration is open to scientists interested in obtaining samples for laborator
 
 INSTALLATION
 -------------
-	
+- npm install -g bower
 - bower install jquery bootstrap
 - composer require sendgrid/sendgrid
 
