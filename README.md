@@ -1,4 +1,5 @@
-## INFORM Virtual Tissue Bank
+INFORM Virtual Tissue Bank
+=============================
 
 INTRODUCTION 
 -------------
@@ -7,11 +8,16 @@ This database collates tissue and fluid samples available from INFORM investigat
 
 Registration is open to scientists interested in obtaining samples for laboratory experiments. Limited access is available to the public.
 
+REQUIREMENT
+------------
+[Node.js](https://nodejs.org/en/) installed.
+
+
 INSTALLATION
 -------------
 - npm install -g bower
-- bower install jquery bootstrap
-- composer require sendgrid/sendgrid
+- bower install
+- composer install --no-dev
 
 CONFIGURATION
 -------------
